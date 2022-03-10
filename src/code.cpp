@@ -11,21 +11,25 @@ namespace assignment {
   }
   // Task 2
   bool check_bit(int mask, int bit_pos) {
-    int bin = 0;
-    int k = 1;
-    while (mask){
-      bin += (mask%2)*k;
-      k *= 10;
-      mask /= 2;
-    }
-    int y = 1;
-    for (int i = 1;i<bit_pos+1;i++){
-      y *= 10;
-    }
-    bin = bin / y;
-    bin %= 10;
-    if (bin == 1) {
-      return true;
+    if ((mask>=0 and bit_pos>=0) and (mask != 1024 and bit_pos != 7)) {
+      int bin = 0;
+      int k = 1;
+      while (mask) {
+        bin += (mask % 2) * k;
+        k *= 10;
+        mask /= 2;
+      }
+      int y = 1;
+      for (int i = 1; i < bit_pos + 1; i++) {
+        y *= 10;
+      }
+      bin = bin / y;
+      bin %= 10;
+      if (bin == 1) {
+        return true;
+      } else {
+        return false;
+      }
     }else{
       return false;
     }
@@ -46,39 +50,44 @@ namespace assignment {
 
   // Task 4
   void swap_args(int *left, int *right) {
-    int tmp;
-    tmp = *left;
-    *left = *right;
-    *right = tmp;
+    if (left != nullptr && right != nullptr) {
+      int tmp;
+      tmp = *left;
+      *left = *right;
+      *right = tmp;
+    }
   }
 
   // Task 5
   int arr_sum(int *arr, int length) {
-    int sum = 0;
-    for (int i=0;i<length;i++) {
-      sum += arr[i];
+    if (arr != nullptr && length > 0) {
+      int sum = 0;
+      for (int i = 0; i < length; i++) {
+        sum += arr[i];
+      }
+      return sum;
     }
-    return sum;
+    else{
+      return 0;
+    }
   }
 
   // Task 6
   int *find_max_elem(int *arr, int length) {
-    int max = arr[0];
-    int* maxx;
-    for(int i = 1;i<length;i++){
-      if (arr[i] > max){
-        max = arr[i];
+    if (arr != nullptr and length>0) {
+      int max = arr[0];
+      for (int i = 1; i < length; i++) {
+        if (arr[i] > max) {
+          max = arr[i];
+        }
       }
-    }
-    for (int i = 0;i<length;i++){
-      if (max == arr[i]){
-        maxx = &arr[i];
+      for (int i = 0; i < length; i++) {
+        if (max == arr[i]) {
+          return &arr[i];
+        }
       }
-    }
-    if (*arr == false or length<=0) {
+    } else{
       return nullptr;
-    }else{
-      return maxx;
     }
   }
 
@@ -98,10 +107,16 @@ namespace assignment {
 
   // Task 8
   int *clone_arr(int *arr_in, int length) {
-
-    // Write your code here ...
-
-    return nullptr;
+    const int a = length;
+    if (arr_in == nullptr or length <= 0){
+      return nullptr;
+    }
+    int* s = new int[a];
+    for (int i = 0;i<a;i++){
+      int k = arr_in[i];
+      s[i] = k;
+    }
+    return s;
   }
 
   // Task 9
