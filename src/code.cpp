@@ -11,28 +11,7 @@ namespace assignment {
   }
   // Task 2
   bool check_bit(int mask, int bit_pos) {
-    if ((mask>=0 and bit_pos>=0) and (mask != 1024 and bit_pos != 7)) {
-      int bin = 0;
-      int k = 1;
-      while (mask) {
-        bin += (mask % 2) * k;
-        k *= 10;
-        mask /= 2;
-      }
-      int y = 1;
-      for (int i = 1; i < bit_pos + 1; i++) {
-        y *= 10;
-      }
-      bin = bin / y;
-      bin %= 10;
-      if (bin == 1) {
-        return true;
-      } else {
-        return false;
-      }
-    }else{
-      return false;
-    }
+    return(mask >> bit_pos)%2 == 1;
   }
 
   // Task 3
